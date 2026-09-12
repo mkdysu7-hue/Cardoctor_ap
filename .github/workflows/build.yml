@@ -16,18 +16,37 @@ jobs:
       with:
         python-version: '3.10'
 
-    - name: Accept Android SDK licenses and install tools
+    - name: Install Dependencies
       run: |
-        mkdir -p ~/.android
-        touch ~/.android/repositories.cfg
-        yes | sdkmanager --licenses || true
-        sdkmanager "build-tools;33.0.2" "platforms;android-33"
+        sudo apt-get update
+        sudo apt-get install -y \
+          python3-pip \
+          build-core \
+          git \
+          zip \
+          unzip \
+          autoconf \
+          libtool \
+          pkg-config \
+          zlib1g-dev \
+          libncurses5-dev \
+          libncursesw5-dev \
+          libtinfo5 \
+          cmake \
+          libffi-dev \
+          libssl-dev \
+          openjdk-17-jdk
 
-    - name: Build with Buildozer
-      uses: ArtemSBulgakov/buildozer-action@v1
-      with:
-        command: android debug
-        buildozer_version: master
+    - name: Install Buildozer and Cython
+      run: |
+        pip install --upgrade pip
+        pip install --user cython==0.29.36
+        pip install --user buildozer
+
+    - name: Build APK
+      run: |
+        export PATH=$PATH:~/.local/bin
+        buildozer -v android debug
 
     - name: Upload APK Artifact
       uses: actions/upload-artifact@v4
