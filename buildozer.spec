@@ -20,9 +20,15 @@ requirements = python3,kivy,charset-normalizer,urllib3,idna,certifi,requests
 # (str) Supported orientation (landscape, portrait or all)
 orientation = portrait
 
-# (list) Permissions
+# (list) Permissions 
 android.permissions = INTERNET
 
 [buildozer]
 log_level = 2
 warn_on_root = 1
+source.dir = .
+version = 0.1
+android.api = 33
+android.min_api = 21
+android.sdk = 33
+android.build_tools_version = 33.0.2
