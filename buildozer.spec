@@ -1,6 +1,5 @@
 [app]
-source.dir = .
-version = 0.1
+
 # (str) Title of your application
 title = Car Doctor
 
@@ -14,21 +13,25 @@ package.domain = org.cardoc
 source.include_exts = py,png,jpg,kv,atlas,txt
 
 # (list) Application requirements
-# Specify requirements using python recipe names
 requirements = python3,kivy,charset-normalizer,urllib3,idna,certifi,requests
 
 # (str) Supported orientation (landscape, portrait or all)
 orientation = portrait
 
-# (list) Permissions 
-android.permissions = INTERNET
+# (int) Target Android API, should be as high as possible.
+android.api = 33
 
-[buildozer]
-log_level = 2
-warn_on_root = 1
+# (int) Minimum API your APK will support
+android.min_api = 21
+
+# (str) Android SDK version to use
+android.sdk = 33
+
+# (str) Android NDK version to use
+android.ndk = 25b
+
+# (str) Android build tools version to use
+android.build_tools_version = 33.0.2
+
 source.dir = .
 version = 0.1
-android.api = 33
-android.min_api = 21
-android.sdk = 33
-android.build_tools_version = 33.0.2
